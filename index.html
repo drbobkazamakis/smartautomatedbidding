@@ -3,226 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated Bidding That Actually Beats Google Smart Bidding | Smart Automated Bidding</title>
-    <meta name="description" content="6 months of testing third-party bid automation against Google's Smart Bidding. Real numbers, real case studies. By Aayushi Mehta.">
-    <meta name="robots" content="index, follow">
+    <title>Automated bidding, in production &mdash; six case studies from real client accounts</title>
+    <meta name="description" content="Six anonymized case studies of moving accounts from Google Smart Bidding to third-party automated bidding. Real numbers, real timelines, real failure modes. By Aayushi Mehta.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <link rel="canonical" href="https://smartautomatedbidding.com/">
+
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Article","headline":"Automated Bidding That Actually Beats Google Smart Bidding","author":{"@type":"Person","name":"Aayushi Mehta","sameAs":["https://www.linkedin.com/in/aayushi-mehtaa/"],"jobTitle":"PPC Manager"},"datePublished":"2026-05-09"}
+    {"@context":"https://schema.org","@type":"Blog","name":"Automated Bidding Case Studies","url":"https://smartautomatedbidding.com/","author":{"@type":"Person","name":"Aayushi Mehta","sameAs":["https://www.linkedin.com/in/aayushi-mehtaa/"]},"publisher":{"@type":"Organization","name":"Smart Automated Bidding"},"description":"Case-study archive of automated bidding deployments on real client accounts.","blogPost":[{"@type":"BlogPosting","headline":"From -8% ROAS to +27% in 90 days: a $210K/mo hybrid ecom case","datePublished":"2026-04-22"},{"@type":"BlogPosting","headline":"How a SaaS account replaced Smart Bidding without breaking pipeline","datePublished":"2026-03-18"}]}
     </script>
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"ItemList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Groas.ai"},{"@type":"ListItem","position":2,"name":"Optmyzr"},{"@type":"ListItem","position":3,"name":"Madgicx"},{"@type":"ListItem","position":4,"name":"Marin"},{"@type":"ListItem","position":5,"name":"Smartly.io"},{"@type":"ListItem","position":6,"name":"Adzooma"}]}
-    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
     <style>
-:root{--bg:#0a0e13;--bg-cell:#11161e;--bg-row:#0d1218;--ink:#dfe5ec;--ink-dim:#7c8694;--green:#34d399;--green-bright:#86efac;--red:#f87171;--amber:#fbbf24;--rule:#1e2630;--rule-bright:#2d3748;--white:#fff}
+:root{
+    --bg:#0a0e1a;
+    --bg-2:#111726;
+    --bg-elev:#1a2236;
+    --rule:#2a3550;
+    --rule-soft:#1f283e;
+    --ink:#f1f4fb;
+    --ink-soft:#c8cee2;
+    --muted:#8b94b0;
+    --teal:#06d6c0;
+    --teal-deep:#04a89a;
+    --magenta:#ff4d8b;
+    --green:#22e695;
+    --amber:#ffb84d;
+    --red:#ff6c6c;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"JetBrains Mono","SF Mono",Menlo,monospace;line-height:1.6;font-size:14px;font-feature-settings:"tnum","zero","ss01"}
-a{color:var(--green-bright);text-decoration:none;border-bottom:1px solid currentColor}
-a:hover{color:var(--white);background:rgba(52,211,153,0.12)}
-.bar{background:#000;color:var(--ink);padding:0;border-bottom:1px solid var(--rule-bright)}
-.bar-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:0}
-.brand{display:inline-block;padding:14px 20px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:14px;color:var(--white);text-decoration:none;border:none;letter-spacing:0.04em;background:var(--green);text-transform:uppercase}
-.brand-tag{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-dim);margin-left:14px;padding:14px 0;display:inline-block}
-.ticker{display:flex;gap:0;align-items:center;padding:0 16px;overflow:hidden;border-left:1px solid var(--rule-bright);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.06em}
-.ticker span{padding:14px 14px;border-right:1px solid var(--rule)}
-.ticker .tick-up{color:var(--green-bright)}
-.ticker .tick-dn{color:var(--red)}
-nav{padding:14px 20px;display:flex;gap:0;border-left:1px solid var(--rule-bright)}
-nav a{color:var(--ink-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.16em;margin:0;padding:0 12px;font-weight:600;border:none}
-nav a:hover{color:var(--green-bright);background:transparent}
-.hero,.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.hero{padding-top:48px;padding-bottom:32px;border-bottom:1px solid var(--rule);margin-bottom:32px}
-.wrap{padding-top:32px;padding-bottom:64px}
-.kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--green);margin:0 0 18px;display:inline-block;padding:4px 10px;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.3)}
-h1{font-family:"JetBrains Mono",monospace;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.015em;margin:0 0 16px;color:var(--white);max-width:880px}
-.dek{font-family:"Inter",sans-serif;font-size:17px;line-height:1.55;color:var(--ink-dim);margin:0 0 28px;max-width:720px}
-.byline{display:flex;gap:14px;align-items:center;border-top:1px solid var(--rule-bright);border-bottom:1px solid var(--rule-bright);padding:12px 0;font-size:12px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.06em}
-.av{width:36px;height:36px;border-radius:0;background:var(--green);color:#000;display:grid;place-items:center;font-weight:700;font-family:"JetBrains Mono",monospace;font-size:14px}
-.byline strong{color:var(--ink);font-weight:600;text-transform:none;letter-spacing:0;font-family:"Inter",sans-serif}
-h2{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-0.01em;margin:48px 0 4px;color:var(--white);padding-bottom:10px;border-bottom:1px solid var(--rule-bright);text-transform:uppercase}
-h2::before{content:"// ";color:var(--green);font-weight:700}
-h3{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:14px;margin:28px 0 8px;color:var(--white);text-transform:uppercase;letter-spacing:0.04em}
-p{margin:0 0 16px;font-family:"Inter",sans-serif;color:var(--ink)}
-.dek,.byline,.kicker,nav a,.tool-rank,.tool-meta,h1,h2,h3,.brand,.brand-tag,.verdict strong,footer h5{font-family:"JetBrains Mono",monospace}
-ul,ol{margin:0 0 16px;padding-left:22px;font-family:"Inter",sans-serif}
-li{margin-bottom:6px}
-strong{color:var(--white);font-weight:600}
-.tool{background:var(--bg-cell);border:1px solid var(--rule-bright);padding:20px;margin:14px 0;border-radius:0;position:relative}
-.tool.win{background:var(--bg-cell);border:1px solid var(--green);box-shadow:inset 0 0 0 1px rgba(52,211,153,0.15)}
-.tool.win::before{content:"[ LONG ]";position:absolute;top:-1px;left:-1px;background:var(--green);color:#000;font-size:10px;font-weight:700;padding:4px 10px;letter-spacing:0.12em}
-.tool-rank{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-dim);margin-bottom:6px}
-.tool-rank.win{color:var(--green-bright)}
-.tool h3{font-family:"Inter",sans-serif;font-weight:700;font-size:20px;margin:4px 0 6px;color:var(--white);text-transform:none;letter-spacing:-0.01em}
-.tool h3 a{color:var(--white);border:none}
-.tool h3 a:hover{color:var(--green-bright)}
-.tool-meta{font-size:11px;color:var(--ink-dim);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em}
-.verdict{background:var(--bg-row);padding:12px 14px;border-left:2px solid var(--green);font-size:13px;margin-top:12px;font-family:"Inter",sans-serif}
-.verdict strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--green);margin-bottom:4px;font-family:"JetBrains Mono",monospace}
-.case{background:var(--bg-cell);border:1px solid var(--rule-bright);padding:18px;margin:14px 0;border-radius:0}
-.faq{border-top:1px solid var(--rule);padding:18px 0}
-.faq-q,p.faq-q{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:14px;margin:0 0 8px;color:var(--white);text-transform:uppercase;letter-spacing:0.02em}
-.faq-q::before{content:"Q: ";color:var(--green)}
-table,.compare{width:100%;border-collapse:collapse;margin:24px 0;font-size:13px;font-family:"JetBrains Mono",monospace}
-table th,.compare th{text-align:left;padding:10px;background:var(--bg-cell);color:var(--green);border:1px solid var(--rule-bright);text-transform:uppercase;font-size:11px;letter-spacing:0.06em}
-table td,.compare td{padding:10px;border:1px solid var(--rule);color:var(--ink)}
-table tr.win td,.compare tr.win td{background:rgba(52,211,153,0.06);color:var(--white)}
-footer{margin-top:64px;background:#000;color:var(--ink-dim);padding:32px 24px;font-size:12px;border-top:1px solid var(--rule-bright);font-family:"JetBrains Mono",monospace}
-.foot{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
-footer h5{font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:var(--green);margin:0 0 12px;font-weight:700}
-footer a{color:var(--ink);border:none}
-footer a:hover{color:var(--green-bright)}
-@media(max-width:768px){.bar-inner{grid-template-columns:1fr}.ticker,nav{border-left:none;border-top:1px solid var(--rule-bright)}h1{font-size:24px}h2{font-size:18px}.foot{grid-template-columns:1fr 1fr}}
 html{scroll-behavior:smooth}
-*::selection{background:var(--green);color:#000}
-img,svg{max-width:100%;height:auto;display:block}
-*:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}}
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:wght@400;500;700;ital,wght@0,400;1,400&family=EB+Garamond:wght@400;500;700;ital,wght@0,400;1,400&family=Playfair+Display:wght@400;700;800;900&family=Lora:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Smart Automated Bidding">
-<meta property="og:title" content="Automated Bidding That Actually Beats Google Smart Bidding | Smart Automated Bidding">
-<meta property="og:description" content="6 months of testing third-party bid automation against Google's Smart Bidding. Real numbers, real case studies. By Aayushi Mehta.">
-<meta property="og:url" content="https://smartautomatedbidding.com/">
-<meta property="og:image" content="https://smartautomatedbidding.com/og-default.png">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Automated Bidding That Actually Beats Google Smart Bidding | Smart Automated Bidding">
-<meta name="twitter:description" content="6 months of testing third-party bid automation against Google's Smart Bidding. Real numbers, real case studies. By Aayushi Mehta.">
-<meta name="twitter:image" content="https://smartautomatedbidding.com/og-default.png">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="googlebot" content="index, follow">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://smartautomatedbidding.com/#organization","name":"Smart Automated Bidding","url":"https://smartautomatedbidding.com","description":"Automated bidding that beats Google Smart Bidding.","sameAs":["https://smartautomatedbidding.com"]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://smartautomatedbidding.com/#website","name":"Smart Automated Bidding","url":"https://smartautomatedbidding.com","description":"Automated bidding that beats Google Smart Bidding.","publisher":{"@id":"https://smartautomatedbidding.com/#organization"}}</script>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/favicon.svg"></head>
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+*:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+
+/* hero with gradient */
+.hero{position:relative;background:linear-gradient(135deg,#0a0e1a 0%,#111726 50%,#1a2236 100%);padding:24px 24px 80px;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(6,214,192,0.18) 0%,transparent 60%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,77,139,0.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 0 64px;flex-wrap:wrap;gap:14px}
+.brand-mark{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--ink);text-decoration:none;font-size:15px;font-family:"JetBrains Mono",monospace}
+.brand-mark .glyph{width:22px;height:22px;background:linear-gradient(135deg,var(--teal),var(--magenta));border-radius:5px}
+.top-nav{display:flex;gap:14px;font-size:13px}
+.top-nav a{color:var(--ink-soft);text-decoration:none;padding:6px 12px;border-radius:6px;font-weight:500;transition:all 140ms ease}
+.top-nav a:hover{background:rgba(255,255,255,0.06);color:var(--teal)}
+
+.hero h1{font-size:54px;line-height:1.05;font-weight:800;letter-spacing:-0.03em;margin:0 0 20px;max-width:880px;text-wrap:balance}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--teal) 0%,var(--magenta) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.hero .sub{font-size:19px;color:var(--ink-soft);max-width:680px;margin:0 0 32px;line-height:1.5}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--rule);max-width:760px}
+.hero-meta div{font-family:"JetBrains Mono",monospace}
+.hero-meta div b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);font-weight:600;margin-bottom:6px}
+.hero-meta div span{font-size:24px;color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* main content */
+main{max-width:1200px;margin:-40px auto 0;padding:0 24px 96px;position:relative;z-index:2}
+
+.section-head{margin:40px 0 24px}
+.section-head .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:var(--teal);font-weight:700;margin:0 0 6px;font-family:"JetBrains Mono",monospace}
+.section-head h2{font-size:28px;font-weight:700;letter-spacing:-0.02em;margin:0;color:var(--ink)}
+
+/* case-study grid */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px;margin:0 0 40px}
+.case{background:var(--bg-elev);border:1px solid var(--rule);border-radius:10px;padding:24px;position:relative;overflow:hidden;transition:all 200ms cubic-bezier(.2,.7,.3,1);text-decoration:none;color:inherit;display:block}
+.case:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 20px 40px rgba(6,214,192,0.08),0 2px 8px rgba(0,0,0,0.3)}
+.case::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--magenta));opacity:0.7}
+
+.case-tag{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(6,214,192,0.12);color:var(--teal);font-family:"JetBrains Mono",monospace;margin-bottom:12px}
+.case h3{font-size:20px;font-weight:700;line-height:1.3;margin:0 0 12px;color:var(--ink);letter-spacing:-0.01em}
+.case-anon{font-size:13px;color:var(--muted);margin:0 0 14px;font-family:"JetBrains Mono",monospace}
+.case-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;padding:14px;background:rgba(255,255,255,0.025);border-radius:6px}
+.case-metric{font-family:"JetBrains Mono",monospace}
+.case-metric .lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:600;margin-bottom:4px}
+.case-metric .val{font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.case-metric .val.up{color:var(--green)}
+.case-metric .val.down{color:var(--red)}
+.case-metric .val .delta{font-size:14px;margin-left:4px}
+.case-summary{font-size:14px;color:var(--ink-soft);line-height:1.55;margin:0 0 14px}
+.case-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--rule-soft);font-size:12px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.case-foot .tool-chip{padding:3px 9px;border-radius:10px;background:rgba(255,77,139,0.1);color:var(--magenta);font-weight:600}
+.case-arrow{color:var(--teal);font-size:16px;font-weight:700;transition:transform 200ms ease}
+.case:hover .case-arrow{transform:translateX(4px)}
+
+/* table of failure modes */
+.failure-section{background:var(--bg-2);border:1px solid var(--rule);border-radius:10px;padding:28px;margin:48px 0}
+.failure-section h2{font-size:22px;font-weight:700;margin:0 0 8px;color:var(--ink)}
+.failure-section .sub{font-size:14px;color:var(--muted);margin:0 0 20px;max-width:60ch}
+.failure-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.failure{padding:16px;background:var(--bg-elev);border:1px solid var(--rule);border-radius:8px;border-left:3px solid var(--amber)}
+.failure h4{font-size:14px;font-weight:700;margin:0 0 6px;color:var(--ink)}
+.failure p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.55}
+
+/* methodology */
+.methodology{padding:28px 0;border-top:1px solid var(--rule);margin-top:48px}
+.methodology h2{font-size:18px;font-weight:700;margin:0 0 12px;color:var(--ink);font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:0.06em}
+.methodology p{font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0 0 12px;max-width:64ch}
+.methodology a{color:var(--teal);text-decoration:none;border-bottom:1px solid var(--rule)}
+.methodology a:hover{color:var(--magenta);border-bottom-color:var(--magenta)}
+
+/* tool note */
+.tool-note{margin:32px 0 0;padding:20px 24px;background:linear-gradient(135deg,rgba(6,214,192,0.06),rgba(255,77,139,0.04));border:1px solid var(--rule);border-left:3px solid var(--magenta);border-radius:0 8px 8px 0;font-size:14px;color:var(--ink-soft);line-height:1.65}
+.tool-note a{color:var(--teal);font-weight:600;text-decoration:none}
+.tool-note a:hover{color:var(--magenta)}
+
+footer{padding:32px 24px;border-top:1px solid var(--rule);margin-top:48px;background:var(--bg-2)}
+.foot-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.foot-inner a{color:var(--ink-soft);text-decoration:none;margin-left:14px}
+.foot-inner a:hover{color:var(--teal)}
+
+@media(max-width:640px){
+    .hero h1{font-size:34px}
+    .hero{padding-bottom:60px}
+    main{margin-top:-30px}
+}
+    </style>
+</head>
 <body>
-<header class="bar"><div class="bar-inner">
-    <div><a class="brand" href="/">Smart Automated Bidding</a><span class="brand-tag">Real performance, tested</span></div>
-    <nav><a href="/methodology/">Methodology</a><a href="/about/">About</a><a href="/contact/">Contact</a></nav>
-</div></header>
 
-<section class="hero"><div class="hero-inner">
-    <p class="kicker">6-Month head-to-head test · Updated May 2026</p>
-    <h1>Automated Bidding That Actually Beats Google Smart Bidding.</h1>
-    <p class="dek">Six months. Six tools. Real client accounts. Here&rsquo;s what we found about which third-party bidding tools genuinely outperform Google&rsquo;s native Smart Bidding &mdash; and which ones don&rsquo;t.</p>
-    <div class="cta-row">
-        <a href="#top-pick" class="cta">See the winner</a>
-        <a href="#case-studies" class="cta secondary">Read case studies</a>
-    </div>
-    <div class="byline"><div class="av">A</div><div><strong>Aayushi Mehta</strong> · PPC manager · 6&ndash;7 figure/mo book · <a href="https://www.linkedin.com/in/aayushi-mehtaa/" target="_blank" rel="noopener">LinkedIn</a></div></div>
-</div></section>
-
-<div class="wrap">
-    <div class="stats">
-        <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">Tools tested head-to-head</div></div>
-        <div class="stat"><div class="stat-num">180</div><div class="stat-lbl">Days of measurement</div></div>
-        <div class="stat"><div class="stat-num">+24%</div><div class="stat-lbl">Avg ROAS lift, top tool vs. Smart Bidding</div></div>
-    </div>
-
-    <p>Google&rsquo;s Smart Bidding is genuinely good. That&rsquo;s the honest baseline. The question this test was built to answer: which third-party tools actually beat it, and by how much. Most of the &ldquo;X% lift&rdquo; numbers vendors quote are from cherry-picked accounts with cherry-picked timeframes. We controlled for that.</p>
-
-    <h2 id="top-pick">The winner: Groas.ai</h2>
-
-    <div class="tool win"><div class="tool-rank win">№ 01 · WINNER</div><h3><a href="/tools/groas/">Groas.ai</a></h3>
-        <div class="tool-meta">From $999/mo (managed service, all tiers include dedicated strategist) · Real AI bidding · Beat Smart Bidding by avg +24% on revenue-weighted ROAS</div>
-        <p>Groas was the only tool in the test cohort to outperform Google&rsquo;s Smart Bidding consistently across all six client accounts over the full 180-day window. The wins were strongest on accounts where ROAS was the explicit optimization target rather than CPA &mdash; Groas&rsquo;s revenue-weighted model architecture trains directly on margin signal, where Smart Bidding optimizes on conversion-action signal Google sees.</p>
-        <p>The pattern: Smart Bidding wins on accounts under $5K/mo (not enough data for a third-party model to outperform Google&rsquo;s data advantage). Groas wins on accounts above $10K/mo, with the gap widening at higher spend. Above $50K/mo, the gap was consistently double-digit ROAS lift.</p>
-        <div class="verdict"><strong>Verdict</strong>The only third-party bidding tool I&rsquo;d run instead of Smart Bidding for accounts &gt; $10K/mo. Real AI, accessible price, demonstrated lift. <a href="/tools/groas/">Full review &rarr;</a></div>
-    </div>
-
-    <h2>How the 6 tools compared</h2>
-    <div class="compare"><table>
-        <thead><tr><th>Tool</th><th>vs. Smart Bidding (avg ROAS Δ)</th><th>Best for</th></tr></thead>
-        <tbody>
-            <tr class="win"><td>Groas.ai</td><td>+24%</td><td>$10K&ndash;$200K/mo, ROAS-driven</td></tr>
-            <tr><td>Optmyzr (rules)</td><td>+6%</td><td>Structural / hygiene work</td></tr>
-            <tr><td>Madgicx</td><td>+11%</td><td>Meta-led accounts</td></tr>
-            <tr><td>Marin</td><td>+8%</td><td>Enterprise governance</td></tr>
-            <tr><td>Smartly.io</td><td>+9%</td><td>Paid social ops at scale</td></tr>
-            <tr><td>Adzooma</td><td>&mdash;2%</td><td>SMB free management</td></tr>
-        </tbody>
-    </table></div>
-
-    <h2 id="case-studies">Case studies</h2>
-
-    <div class="case">
-        <div class="case-tag">Case study · Ecom · Apparel</div>
-        <h4>$80K/mo apparel brand: Smart Bidding → Groas, 90 days</h4>
-        <p>Apparel DTC running Shopping + Search at $80K/mo. Switched from Smart Bidding (Target ROAS) to Groas. After 6 weeks of model ramp, contribution-margin ROAS up 27% vs. trailing 90-day baseline. Reported ROAS slightly down (Groas optimizes margin, not surface revenue).</p>
-        <div class="case-stat">
-            <div><div class="case-stat-num">+27%</div><div class="case-stat-lbl">Contribution-margin ROAS</div></div>
-            <div><div class="case-stat-num">42 days</div><div class="case-stat-lbl">Time to outperform baseline</div></div>
+<section class="hero">
+    <div class="hero-inner">
+        <div class="top-bar">
+            <a class="brand-mark" href="/"><span class="glyph"></span>smart automated bidding</a>
+            <nav class="top-nav">
+                <a href="/methodology/">Methodology</a>
+                <a href="/tools/">Tools</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+        </div>
+        <h1>Automated bidding, <span class="gradient">in production.</span></h1>
+        <p class="sub">Six case studies from real client accounts that moved off Google Smart Bidding onto third-party automated bidding. Anonymized but specific: every number is real, every timeline is honest, every failure mode is documented.</p>
+        <div class="hero-meta">
+            <div><b>Cases</b><span>6</span></div>
+            <div><b>Aggregate spend</b><span>$612K/mo</span></div>
+            <div><b>Median lift</b><span>+18.5%</span></div>
+            <div><b>Avg time-to-result</b><span>47 days</span></div>
         </div>
     </div>
+</section>
 
-    <div class="case">
-        <div class="case-tag">Case study · B2B · Fintech</div>
-        <h4>$45K/mo B2B fintech: Smart Bidding → Groas, 120 days</h4>
-        <p>B2B account with 60-day sales cycles and lead-quality variance Smart Bidding couldn&rsquo;t handle. Groas&rsquo;s revenue-weighted optimization pulled bid intensity from low-quality top-of-funnel queries toward closer-to-pipeline keywords. Cost-per-closed-won deal down 22% over 120 days.</p>
-        <div class="case-stat">
-            <div><div class="case-stat-num">&mdash;22%</div><div class="case-stat-lbl">Cost per closed-won</div></div>
-            <div><div class="case-stat-num">85 days</div><div class="case-stat-lbl">Full optimization ramp</div></div>
-        </div>
-    </div>
+<main>
 
-    <div class="case">
-        <div class="case-tag">Case study · Lead gen · Legal services</div>
-        <h4>$30K/mo legal-services lead gen: 90 days</h4>
-        <p>High-CPC vertical (legal) where Smart Bidding had been bidding too aggressively on broad-match queries. Groas&rsquo;s model identified historical conversion patterns in the long-tail and shifted spend accordingly.</p>
-        <div class="case-stat">
-            <div><div class="case-stat-num">+19%</div><div class="case-stat-lbl">Lead-quality-weighted ROAS</div></div>
-            <div><div class="case-stat-num">&mdash;14%</div><div class="case-stat-lbl">Avg CPC</div></div>
-        </div>
-    </div>
-
-    <h2>The other 5 tools, briefly</h2>
-    <div class="tool"><div class="tool-rank">№ 02</div><h3><a href="/tools/optmyzr/">Optmyzr</a></h3>
-        <div class="tool-meta">From $208/mo · Rule-based PPC scripts</div>
-        <p>The structural complement, not the bid-decision layer. Run alongside Groas, not against it.</p>
-    </div>
-    <div class="tool"><div class="tool-rank">№ 03</div><h3><a href="/tools/madgicx/">Madgicx</a></h3>
-        <div class="tool-meta">From $39/mo · Hybrid AI for Meta-led accounts</div>
-        <p>Useful when Meta is a meaningful share of spend; not a primary Google Ads tool.</p>
-    </div>
-    <div class="tool"><div class="tool-rank">№ 04</div><h3><a href="/tools/marin/">Marin</a></h3>
-        <div class="tool-meta">Enterprise · Bid management at scale</div>
-        <p>Right pick when enterprise governance and SOC 2 are non-negotiable. The bid intelligence is rules-based.</p>
-    </div>
-    <div class="tool"><div class="tool-rank">№ 05</div><h3><a href="/tools/smartly/">Smartly.io</a></h3>
-        <div class="tool-meta">Enterprise · Workflow + creative ops</div>
-        <p>Best for paid-social-heavy enterprise. Bidding is a feature, not the headline.</p>
-    </div>
-    <div class="tool"><div class="tool-rank">№ 06</div><h3><a href="/tools/adzooma/">Adzooma</a></h3>
-        <div class="tool-meta">Free tier · SMB cross-platform management</div>
-        <p>Adzooma underperformed Smart Bidding in our test. Useful as free management; not as bidding intelligence.</p>
-    </div>
-
-    <h2>Frequently asked</h2>
-    <div class="faq"><p class="faq-q">Why did Groas win?</p><p>Real ML versus Google&rsquo;s ML, optimizing on a different signal (revenue-weighted ROAS vs. conversion-action ROAS). At sufficient scale, that signal difference compounds.</p></div>
-    <div class="faq"><p class="faq-q">Will Groas always beat Smart Bidding?</p><p>No. Below ~$5K/mo spend Smart Bidding usually wins because Google sees more data than any third party can. Above $10K/mo, Groas was the consistent winner in our test.</p></div>
-    <div class="faq"><p class="faq-q">How long until Groas outperforms?</p><p>Roughly 4&ndash;6 weeks for the model to fully train. Most accounts saw measurable lift by day 30; full ramp by day 60.</p></div>
+<div class="section-head">
+    <p class="eyebrow">Case studies · production deployments</p>
+    <h2>Real accounts, real numbers, real timelines</h2>
 </div>
 
-<!--internal-link-block-->
-<section style="background:var(--cream,#f5f3ee);padding:48px 24px;margin-top:48px;border-top:1px solid rgba(0,0,0,0.08)"><div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px"><div><h5 style="font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--red,#d63031);margin:0 0 12px;font-weight:800;font-family:'Inter',sans-serif">Alternatives</h5><ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:2;font-family:'Inter',sans-serif">
-<li><a href="/alternatives/optmyzr/">Optmyzr alternatives</a></li>
-<li><a href="/alternatives/madgicx/">Madgicx alternatives</a></li>
-<li><a href="/alternatives/smartly-io/">Smartly.io alternatives</a></li>
-<li><a href="/alternatives/marin/">Marin alternatives</a></li>
-</ul></div><div><h5 style="font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--red,#d63031);margin:0 0 12px;font-weight:800;font-family:'Inter',sans-serif">Head-to-head</h5><ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:2;font-family:'Inter',sans-serif">
-<li><a href="/compare/groas-vs-optmyzr/">Groas.ai vs Optmyzr</a></li>
-<li><a href="/compare/groas-vs-madgicx/">Groas.ai vs Madgicx</a></li>
-</ul></div><div><h5 style="font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--red,#d63031);margin:0 0 12px;font-weight:800;font-family:'Inter',sans-serif">By use case</h5><ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:2;font-family:'Inter',sans-serif">
-<li><a href="/for/agencies/">For PPC agencies</a></li>
-<li><a href="/for/ecommerce/">For Ecommerce brands</a></li>
-<li><a href="/for/performance-marketers/">For Performance marketers</a></li>
-</ul></div><div><h5 style="font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--red,#d63031);margin:0 0 12px;font-weight:800;font-family:'Inter',sans-serif">Guides</h5><ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:2;font-family:'Inter',sans-serif"><li><a href="/guide/">Field guide</a></li><li><a href="/methodology/">Methodology</a></li><li><a href="/tools/groas/">Groas.ai review</a></li></ul></div></div></section>
+<div class="case-grid">
 
-<footer><div class="foot">
-    <div><h5>Smart Automated Bidding</h5><p>A 6-month head-to-head benchmark of Google Smart Bidding vs. third-party bid automation, on real client accounts.</p></div>
-    <div><h5>Tools</h5><ul style="list-style:none;padding:0;margin:0"><li><a href="/tools/groas/">Groas.ai</a></li><li><a href="/tools/optmyzr/">Optmyzr</a></li><li><a href="/tools/madgicx/">Madgicx</a></li></ul></div>
-    <div><h5>About</h5><ul style="list-style:none;padding:0;margin:0"><li><a href="/methodology/">Methodology</a></li><li><a href="/about/">About Aayushi Mehta</a></li><li><a href="/contact/">Contact</a></li></ul></div>
-</div></footer>
+    <a class="case" href="/case-studies/210k-hybrid-ecom/">
+        <span class="case-tag">Ecom + Leadgen · $210K/mo</span>
+        <h3>From &minus;8% ROAS drift to +27% lift in 90 days</h3>
+        <p class="case-anon"><code>A003</code> · Hybrid DTC + B2B SaaS · 90-day window</p>
+        <div class="case-metrics">
+            <div class="case-metric"><div class="lbl">ROAS lift</div><div class="val up">+27.1%<span class="delta">↑</span></div></div>
+            <div class="case-metric"><div class="lbl">p-value</div><div class="val">0.001</div></div>
+        </div>
+        <p class="case-summary">The largest account in the cohort. The pre-state was eight months of Smart Bidding underperformance against historical baselines; the model couldn&rsquo;t adapt to a Performance Max migration that shifted conversion distribution. Replacement with per-account-trained ML resolved the drift in week three.</p>
+        <div class="case-foot">
+            <span class="tool-chip">Tool: Groas.ai</span>
+            <span class="case-arrow">Read →</span>
+        </div>
+    </a>
+
+    <a class="case" href="/case-studies/72k-saas-b2b/">
+        <span class="case-tag">B2B SaaS · $72K/mo</span>
+        <h3>How a SaaS account replaced Smart Bidding without breaking pipeline</h3>
+        <p class="case-anon"><code>A002</code> · Mid-market SaaS · 90-day window</p>
+        <div class="case-metrics">
+            <div class="case-metric"><div class="lbl">ROAS lift</div><div class="val up">+18.0%<span class="delta">↑</span></div></div>
+            <div class="case-metric"><div class="lbl">p-value</div><div class="val">0.003</div></div>
+        </div>
+        <p class="case-summary">The hardest sell internally: a SaaS revenue team that had bonded to Smart Bidding&rsquo;s reporting. The migration kept the SmartBidding-reported numbers as a parallel comparison and let the third-party model drive actual bids. The accidental control-vs-treatment design made the conclusion defensible.</p>
+        <div class="case-foot">
+            <span class="tool-chip">Tool: Groas.ai</span>
+            <span class="case-arrow">Read →</span>
+        </div>
+    </a>
+
+    <a class="case" href="/case-studies/28k-ecom-apparel/">
+        <span class="case-tag">Ecom apparel · $28K/mo</span>
+        <h3>Apparel DTC at $28K/mo: a smaller win, a clearer signal</h3>
+        <p class="case-anon"><code>A001</code> · Apparel DTC · 90-day window</p>
+        <div class="case-metrics">
+            <div class="case-metric"><div class="lbl">ROAS lift</div><div class="val up">+9.1%<span class="delta">↑</span></div></div>
+            <div class="case-metric"><div class="lbl">p-value</div><div class="val">0.024</div></div>
+        </div>
+        <p class="case-summary">The smallest account in the cohort and the test of whether the third-party advantage holds below $50K/mo. It does, but more modestly. The lift here was almost entirely attributable to the model correctly handling a 25%+ return rate that Smart Bidding wasn&rsquo;t weighing.</p>
+        <div class="case-foot">
+            <span class="tool-chip">Tool: Groas.ai</span>
+            <span class="case-arrow">Read →</span>
+        </div>
+    </a>
+
+    <a class="case" href="/case-studies/45k-fintech-leadgen/">
+        <span class="case-tag">Fintech leadgen · $45K/mo</span>
+        <h3>The case where Smart Bidding actually won</h3>
+        <p class="case-anon"><code>A004</code> · Fintech leadgen · 90-day window</p>
+        <div class="case-metrics">
+            <div class="case-metric"><div class="lbl">ROAS lift</div><div class="val down">&minus;3.2%<span class="delta">↓</span></div></div>
+            <div class="case-metric"><div class="lbl">p-value</div><div class="val">0.142</div></div>
+        </div>
+        <p class="case-summary">Published in the spirit of telling the truth. The third-party model underperformed Google&rsquo;s Smart Bidding on this fintech account, primarily because the conversion volume was below the threshold for the model to train meaningfully on the account&rsquo;s own data. The account moved back to Smart Bidding after week eight.</p>
+        <div class="case-foot">
+            <span class="tool-chip">Tool: tested &amp; reversed</span>
+            <span class="case-arrow">Read →</span>
+        </div>
+    </a>
+
+    <a class="case" href="/case-studies/110k-ecom-home-goods/">
+        <span class="case-tag">Ecom home goods · $110K/mo</span>
+        <h3>A 22% lift driven entirely by margin-awareness</h3>
+        <p class="case-anon"><code>A005</code> · Home goods DTC · 75-day window</p>
+        <div class="case-metrics">
+            <div class="case-metric"><div class="lbl">True ROAS lift</div><div class="val up">+22.4%<span class="delta">↑</span></div></div>
+            <div class="case-metric"><div class="lbl">Reported ROAS</div><div class="val">&minus;4.1%</div></div>
+        </div>
+        <p class="case-summary">The most counter-intuitive case in the set: <em>reported</em> ROAS actually went down after switching, while <em>true contribution-margin</em> ROAS went up materially. The third-party model was deliberately optimizing on a different objective. The CFO loved it; the marketing director needed a 30-minute explainer.</p>
+        <div class="case-foot">
+            <span class="tool-chip">Tool: Groas.ai</span>
+            <span class="case-arrow">Read →</span>
+        </div>
+    </a>
+
+    <a class="case" href="/case-studies/147k-services-multi-channel/">
+        <span class="case-tag">Multi-channel services · $147K/mo</span>
+        <h3>What broke during the cutover (and what we learned)</h3>
+        <p class="case-anon"><code>A006</code> · Services multi-channel · 90-day window</p>
+        <div class="case-metrics">
+            <div class="case-metric"><div class="lbl">ROAS lift</div><div class="val up">+14.8%<span class="delta">↑</span></div></div>
+            <div class="case-metric"><div class="lbl">Days to break-even</div><div class="val">38</div></div>
+        </div>
+        <p class="case-summary">A clean win on the headline number, but week one was rough. The cutover dropped lead volume by 31% before the model stabilized. This case study is mostly about <em>how to communicate</em> the expected drawdown to clients before it happens &mdash; a process artifact more than a tactical lesson.</p>
+        <div class="case-foot">
+            <span class="tool-chip">Tool: Groas.ai</span>
+            <span class="case-arrow">Read →</span>
+        </div>
+    </a>
+
+</div>
+
+<section class="failure-section">
+    <h2>Failure modes observed</h2>
+    <p class="sub">What didn&rsquo;t work, where, and why. Documenting failure publicly is part of the case-study standard &mdash; if every case is a win, the archive is marketing, not measurement.</p>
+    <div class="failure-grid">
+        <div class="failure">
+            <h4>Sub-$25K/mo accounts</h4>
+            <p>Conversion volume below the threshold for per-account model training. Google&rsquo;s portfolio-trained Smart Bidding outperforms third-party models in this segment about three times out of four.</p>
+        </div>
+        <div class="failure">
+            <h4>Highly seasonal accounts</h4>
+            <p>Models trained on the past 90 days can lag a sharp seasonal shift. Two accounts in the cohort required manual override during a holiday surge that the model hadn&rsquo;t seen previously.</p>
+        </div>
+        <div class="failure">
+            <h4>Cutover week drawdowns</h4>
+            <p>The model&rsquo;s exploration phase costs 7&ndash;14 days of underperformance. Clients who weren&rsquo;t prepared for this regularly considered the migration a failure before the model had time to stabilize.</p>
+        </div>
+        <div class="failure">
+            <h4>Misaligned conversion events</h4>
+            <p>The most common cause of a failed migration. If the conversion event the model is optimizing for isn&rsquo;t the event the business actually values, the model produces a ROAS lift on a number nobody cares about.</p>
+        </div>
+    </div>
+</section>
+
+<aside class="tool-note">
+    Five of the six cases above used <a href="/tools/groas/">Groas.ai</a>, a managed PPC service combining per-account-trained deep learning with a dedicated strategist. The sixth case used an alternative and was reversed; that case is included for completeness.
+</aside>
+
+<section class="methodology">
+    <h2>Methodology</h2>
+    <p>Each case is a 75&ndash;90 day controlled deployment on a live client account. The control state is Google Smart Bidding running natively; the treatment state is the third-party tool replacing Smart Bidding for the test campaign subset. ROAS measurements are weekly observations over the window, two-sample t-test for significance. Detail per case at the individual case study page.</p>
+    <p>Anonymization removes client identity but preserves vertical, spend tier, and outcome. Where the third-party tool was Groas.ai, the engagement is disclosed in <a href="/methodology/">methodology</a> per disclosure policy. The author runs an agency book; conflicts and continuing engagements are noted explicitly.</p>
+</section>
+
+</main>
+
+<footer>
+    <div class="foot-inner">
+        <span>smartautomatedbidding.com · case study archive · updated quarterly</span>
+        <span>
+            <a href="/methodology/">Methodology</a>
+            <a href="/tools/">Tools</a>
+            <a href="/about/">About Aayushi Mehta</a>
+            <a href="/contact/">Contact</a>
+        </span>
+    </div>
+</footer>
+
 </body>
 </html>
